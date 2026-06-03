@@ -1,86 +1,6 @@
 # PAwChO – Laboratorium 6
 
-## Konfiguracja i wykorzystanie klienta CLI dla usług GitHub. Rejestr obrazów ghcr.io. BuildKit i SSH
-
-**Autor:** Oleksandr Pyrlyk
-**Przedmiot:** Programowanie Aplikacji w Chmurze Obliczeniowej
-**Laboratorium:** 6
-
----
-
-# 1. Cel ćwiczenia
-
-Celem laboratorium było:
-
-* utworzenie repozytorium GitHub przy użyciu narzędzi CLI,
-* konfiguracja uwierzytelniania SSH,
-* wykorzystanie Docker BuildKit,
-* budowanie obrazu Docker z użyciem protokołu SSH,
-* publikacja obrazu w GitHub Container Registry (ghcr.io),
-* powiązanie obrazu kontenerowego z repozytorium GitHub.
-
----
-
-# 2. Utworzenie repozytorium GitHub
-
-Utworzono publiczne repozytorium:
-
-```text
-pawcho6
-```
-
-Link do repozytorium:
-
-```text
-https://github.com/OleksandrPyrlyk/pawcho6
-```
-
-### Screenshot 1 – Repozytorium GitHub
-
-[ WSTAW SCREENSHOT ]
-
----
-
-# 3. Konfiguracja SSH
-
-Wygenerowano klucz SSH oraz dodano go do konta GitHub.
-
-Weryfikacja połączenia:
-
-```bash
-ssh -T git@github.com
-```
-
-Wynik:
-
-```text
-Hi OleksandrPyrlyk! You've successfully authenticated,
-but GitHub does not provide shell access.
-```
-
-### Screenshot 2 – Poprawna autoryzacja SSH
-
-[ WSTAW SCREENSHOT ]
-
----
-
-# 4. Struktura projektu
-
-Projekt zawiera następujące pliki:
-
-```text
-Dockerfile
-index.html
-style.css
-```
-
-### Screenshot 3 – Zawartość repozytorium
-
-[ WSTAW SCREENSHOT ]
-
----
-
-# 5. Treść pliku Dockerfile
+## Treść pliku Dockerfile
 
 ```dockerfile
 # syntax=docker/dockerfile:1.7
@@ -109,66 +29,90 @@ EXPOSE 80
 
 ---
 
-# 6. Budowanie obrazu Docker
+## Polecenie użyte do budowy obrazu
 
-Do budowy obrazu wykorzystano BuildKit oraz SSH.
-
-Polecenie:
-
-```bash
-docker buildx build ^
---ssh default=%USERPROFILE%\.ssh\gh_pawcho6 ^
---build-arg GITHUB_USER=OleksandrPyrlyk ^
--t pawcho6:test ^
+```powershell
+docker buildx build `
+--ssh default=$env:USERPROFILE\.ssh\gh_pawcho6 `
+--build-arg GITHUB_USER=OleksandrPyrlyk `
+-t pawcho6:test `
 --load .
 ```
 
-### Screenshot 4 – Proces budowania obrazu
+### Wynik działania
 
-[ WSTAW SCREENSHOT ]
+[ WSTAW SCREENSHOT Z POPRAWNIE WYKONANEGO `docker buildx build` ]
 
 ---
 
-# 7. Uruchomienie kontenera
+# Potwierdzenie wykonania pozostałych zadań
 
-Uruchomienie kontenera:
+## 1. Utworzenie repozytorium GitHub
 
-```bash
+Repozytorium:
+
+```text
+https://github.com/OleksandrPyrlyk/pawcho6
+```
+
+### Screenshot
+
+[ WSTAW SCREENSHOT REPOZYTORIUM ]
+
+---
+
+## 2. Konfiguracja SSH
+
+Poprawna autoryzacja SSH:
+
+```text
+Hi OleksandrPyrlyk! You've successfully authenticated, but GitHub does not provide shell access.
+```
+
+### Screenshot
+
+[ WSTAW SCREENSHOT SSH ]
+
+---
+
+## 3. Uruchomienie kontenera
+
+Polecenie:
+
+```powershell
 docker run -d -p 8080:80 --name pawcho6-test pawcho6:test
 ```
 
-Sprawdzenie działania:
+Sprawdzenie:
 
-```bash
+```powershell
 docker ps
 ```
 
-### Screenshot 5 – Działający kontener
+### Screenshot
 
-[ WSTAW SCREENSHOT ]
+[ WSTAW SCREENSHOT `docker ps` ]
 
 ---
 
-# 8. Test aplikacji
+## 4. Działanie aplikacji
 
-Aplikacja została uruchomiona lokalnie pod adresem:
+Adres:
 
 ```text
 http://localhost:8080
 ```
 
-### Screenshot 6 – Strona aplikacji
+### Screenshot
 
-[ WSTAW SCREENSHOT ]
+[ WSTAW SCREENSHOT STRONY ]
 
 ---
 
-# 9. Logowanie do GitHub Container Registry
+## 5. Logowanie do GitHub Container Registry
 
-Logowanie do rejestru:
-
-```bash
-echo %CR_PAT% | docker login ghcr.io -u OleksandrPyrlyk --password-stdin
+```powershell
+echo $CR_PAT | docker login ghcr.io -u OleksandrPyrlyk --password-stdin
 ```
 
 Wynik:
@@ -177,33 +121,33 @@ Wynik:
 Login Succeeded
 ```
 
-### Screenshot 7 – Logowanie do ghcr.io
+### Screenshot
 
-[ WSTAW SCREENSHOT ]
+[ WSTAW SCREENSHOT LOGOWANIA ]
 
 ---
 
-# 10. Publikacja obrazu do ghcr.io
+## 6. Publikacja obrazu do ghcr.io
 
-Tagowanie obrazu:
+Tagowanie:
 
-```bash
+```powershell
 docker tag pawcho6:test ghcr.io/oleksandrpyrlyk/pawcho6:lab6
 ```
 
 Publikacja:
 
-```bash
+```powershell
 docker push ghcr.io/oleksandrpyrlyk/pawcho6:lab6
 ```
 
-### Screenshot 8 – Docker Push
+### Screenshot
 
-[ WSTAW SCREENSHOT ]
+[ WSTAW SCREENSHOT `docker push` ]
 
 ---
 
-# 11. GitHub Container Registry
+## 7. Repozytorium ghcr.io
 
 Obraz został opublikowany jako:
 
@@ -211,32 +155,26 @@ Obraz został opublikowany jako:
 ghcr.io/oleksandrpyrlyk/pawcho6:lab6
 ```
 
-Widoczność pakietu:
+Status:
 
 ```text
 Public
 ```
 
-### Screenshot 9 – Package w ghcr.io
+### Screenshot
 
-[ WSTAW SCREENSHOT ]
+[ WSTAW SCREENSHOT PACKAGE `pawcho6` ]
 
 ---
 
-# 12. Powiązanie package z repozytorium
+## 8. Powiązanie package z repozytorium
 
-Package został połączony z repozytorium:
+Repozytorium:
 
 ```text
 OleksandrPyrlyk/pawcho6
 ```
 
-### Screenshot 10 – Connect Repository
+### Screenshot
 
-[ WSTAW SCREENSHOT ]
-
----
-
-# 13. Wnioski
-
-Podczas laboratorium skonfigurowano uwierzytelnianie SSH dla GitHub, utworzono repozytorium GitHub, przygotowano wieloetapowy plik Dockerfile wykorzystujący BuildKit oraz SSH, zbudowano obraz Docker na podstawie kodu pobieranego z repozytorium GitHub, a następnie opublikowano obraz w GitHub Container Registry (ghcr.io). Dodatkowo obraz został udostępniony publicznie oraz powiązany z repozytorium projektu.
+[ WSTAW SCREENSHOT CONNECT REPOSITORY ]
