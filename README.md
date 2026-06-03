@@ -39,29 +39,11 @@ docker buildx build `
 --load .
 ```
 
-### Wynik działania
-
-[ WSTAW SCREENSHOT Z POPRAWNIE WYKONANEGO `docker buildx build` ]
-
 ---
 
 # Potwierdzenie wykonania pozostałych zadań
 
-## 1. Utworzenie repozytorium GitHub
-
-Repozytorium:
-
-```text
-https://github.com/OleksandrPyrlyk/pawcho6
-```
-
-### Screenshot
-
-[ WSTAW SCREENSHOT REPOZYTORIUM ]
-
----
-
-## 2. Konfiguracja SSH
+## 1. Konfiguracja SSH
 
 Poprawna autoryzacja SSH:
 
@@ -71,11 +53,11 @@ Hi OleksandrPyrlyk! You've successfully authenticated, but GitHub does not provi
 
 ### Screenshot
 
-[ WSTAW SCREENSHOT SSH ]
+<img width="683" height="34" alt="image" src="https://github.com/user-attachments/assets/b9861fad-abf5-43e7-918e-fd4f8101244d" />
 
 ---
 
-## 3. Uruchomienie kontenera
+## 2. Uruchomienie kontenera
 
 Polecenie:
 
@@ -91,11 +73,11 @@ docker ps
 
 ### Screenshot
 
-[ WSTAW SCREENSHOT `docker ps` ]
+<img width="1002" height="67" alt="image" src="https://github.com/user-attachments/assets/1d9d6f31-f525-48e2-bd4a-6dcc0b20429b" />
 
 ---
 
-## 4. Działanie aplikacji
+## 3. Działanie aplikacji
 
 Adres:
 
@@ -105,11 +87,11 @@ http://localhost:8080
 
 ### Screenshot
 
-[ WSTAW SCREENSHOT STRONY ]
+<img width="973" height="370" alt="image" src="https://github.com/user-attachments/assets/d84d4d9a-3fec-4228-bb4f-f89260ee5202" />
 
 ---
 
-## 5. Logowanie do GitHub Container Registry
+## 4. Logowanie do GitHub Container Registry
 
 ```powershell
 echo $CR_PAT | docker login ghcr.io -u OleksandrPyrlyk --password-stdin
@@ -123,11 +105,11 @@ Login Succeeded
 
 ### Screenshot
 
-[ WSTAW SCREENSHOT LOGOWANIA ]
+<img width="669" height="31" alt="image" src="https://github.com/user-attachments/assets/be2628d8-eb67-4ddc-9ce0-8bc56033edc9" />
 
 ---
 
-## 6. Publikacja obrazu do ghcr.io
+## 5. Publikacja obrazu do ghcr.io
 
 Tagowanie:
 
@@ -141,13 +123,9 @@ Publikacja:
 docker push ghcr.io/oleksandrpyrlyk/pawcho6:lab6
 ```
 
-### Screenshot
-
-[ WSTAW SCREENSHOT `docker push` ]
-
 ---
 
-## 7. Repozytorium ghcr.io
+## 6. Repozytorium ghcr.io
 
 Obraz został opublikowany jako:
 
@@ -163,11 +141,11 @@ Public
 
 ### Screenshot
 
-[ WSTAW SCREENSHOT PACKAGE `pawcho6` ]
+<img width="742" height="423" alt="image" src="https://github.com/user-attachments/assets/37ef47aa-749e-4a0d-83b6-7a39fa43ccca" />
 
 ---
 
-## 8. Powiązanie package z repozytorium
+## 7. Powiązanie package z repozytorium
 
 Repozytorium:
 
