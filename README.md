@@ -142,17 +142,3 @@ Public
 ### Screenshot
 
 <img width="742" height="423" alt="image" src="https://github.com/user-attachments/assets/37ef47aa-749e-4a0d-83b6-7a39fa43ccca" />
-
----
-
-## 7. Powiązanie package z repozytorium
-
-Repozytorium:
-
-```text
-OleksandrPyrlyk/pawcho6
-```
-
-### Screenshot
-
-[ WSTAW SCREENSHOT CONNECT REPOSITORY ]
